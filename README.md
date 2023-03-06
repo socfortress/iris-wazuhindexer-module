@@ -6,7 +6,7 @@
 
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
-[![your-own-soc-free-for-life-tier](https://img.shields.io/badge/Walkthrough%20Demo-orange)](https://www.socfortress.co/trial.html)
+[![your-own-soc-free-for-life-tier](https://img.shields.io/badge/Walkthrough%20Demo-orange)](https://youtu.be/2EMb6zYx7_E)
 [![youtube-channel](https://img.shields.io/badge/YouTube-Build%20Your%20Own%20SIEM%20Stack-red)](https://www.youtube.com/playlist?list=PLB6hQ_WpB6U0WeroZAfssgRpxW8olnkqy)
 
 <!-- PROJECT LOGO -->
