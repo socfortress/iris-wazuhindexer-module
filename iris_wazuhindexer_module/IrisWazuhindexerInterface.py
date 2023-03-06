@@ -67,7 +67,7 @@ class IrisWazuhindexerInterface(IrisModuleInterface):
 
         if module_conf.get('wazuhindexer_manual_hook_enabled'):
             status = self.register_to_hook(module_id, iris_hook_name='on_manual_trigger_ioc',
-                                           manual_hook_name='Get wazuhindexer insight')
+                                           manual_hook_name='Search Wazuh-Indexer')
             if status.is_failure():
                 self.log.error(status.get_message())
                 self.log.error(status.get_data())
@@ -126,6 +126,18 @@ class IrisWazuhindexerInterface(IrisModuleInterface):
             # Check that the IOC we receive is of type the module can handle and dispatch
             if 'domain' in element.ioc_type.type_name:
                 status = wazuhindexer_handler.handle_domain(ioc=element)
+                in_status = InterfaceStatus.merge_status(in_status, status)
+            # Hanlde IoC of type IP
+            if 'ip-' in element.ioc_type.type_name:
+                status = wazuhindexer_handler.handle_ip(ioc=element)
+                in_status = InterfaceStatus.merge_status(in_status, status)
+            # Hanlde IoC of type SHA256
+            if 'sha256' in element.ioc_type.type_name:
+                status = wazuhindexer_handler.handle_filehash(ioc=element)
+                in_status = InterfaceStatus.merge_status(in_status, status)
+            # Hanlde IoC of type Filename
+            if 'filename' in element.ioc_type.type_name:
+                status = wazuhindexer_handler.handle_filename(ioc=element)
                 in_status = InterfaceStatus.merge_status(in_status, status)
 
             #elif element.ioc_type.type_name in ['md5', 'sha224', 'sha256', 'sha512']:

@@ -8,8 +8,8 @@
 #
 #  License MIT
 
-module_name = "IrisWazuhindexer"
-module_description = ""
+module_name = "Wazuh-Indexer Analysis Module"
+module_description = "Search for IoCs in Wazuh-Indexer. Please see https://github.com/socfortress/iris-wazuhindexer-module/tree/main for more details"
 interface_version = 1.1
 module_version = 1.0
 
@@ -20,21 +20,92 @@ pipeline_info = {}
 module_configuration = [
     {
         "param_name": "wazuhindexer_url",
-        "param_human_name": "wazuhindexer URL",
-        "param_description": "",
+        "param_human_name": "Wazuh-Indexer URL",
+        "param_description": "Define the Wazuh-Indexer endpoints - I.E http://127.0.0.1:9200",
         "default": None,
         "mandatory": True,
         "type": "string"
     },
     {
-        "param_name": "wazuhindexer_key",
-        "param_human_name": "wazuhindexer key",
-        "param_description": "wazuhindexer API key",
+        "param_name": "wazuhindexer_user",
+        "param_human_name": "Wazuh-Indexer User",
+        "param_description": "Set the Wazuh-Indexer user to authenticate with",
+        "default": None,
+        "mandatory": True,
+        "type": "string"
+    },
+    {
+        "param_name": "wazuhindexer_pass",
+        "param_human_name": "Wazuh-Indexer Password",
+        "param_description": "Set the Wazuh-Indexer password associated with your defined user to authenticate with",
         "default": None,
         "mandatory": True,
         "type": "sensitive_string"
     },
-    
+    {
+        "param_name": "wazuhindexer_index",
+        "param_human_name": "Wazuh-Indexer Index",
+        "param_description": "Define the Wazuh-Indexer indices to use - wazuh-*",
+        "default": None,
+        "mandatory": True,
+        "type": "string"
+    },
+    {
+        "param_name": "wazuhindexer_field_domain",
+        "param_human_name": "Wazuh-Indexer Domain Field",
+        "param_description": "Define the fields to query",
+        "default": "dns_query",
+        "mandatory": True,
+        "type": "string"
+    },
+    {
+        "param_name": "wazuhindexer_field_ip",
+        "param_human_name": "Wazuh-Indexer IP Field",
+        "param_description": "Define the fields to query",
+        "default": "dst_ip",
+        "mandatory": True,
+        "type": "string"
+    },
+    {
+        "param_name": "wazuhindexer_field_sha256",
+        "param_human_name": "Wazuh-Indexer Sha256 Field",
+        "param_description": "Define the fields to query",
+        "default": "sha256",
+        "mandatory": True,
+        "type": "string"
+    },
+    {
+        "param_name": "wazuhindexer_field_fileName",
+        "param_human_name": "Wazuh-Indexer File Name Field",
+        "param_description": "Define the fields to query",
+        "default": "data_win_eventdata_targetFilename",
+        "mandatory": True,
+        "type": "string"
+    },
+    {
+        "param_name": "wazuhindexer_size",
+        "param_human_name": "Size",
+        "param_description": "Define the number of hits per index to return",
+        "default": "10",
+        "mandatory": True,
+        "type": "string"
+    },
+    {
+        "param_name": "wazuhindexer_ssl",
+        "param_human_name": "Verify SSL",
+        "param_description": "Verify SSL certificate",
+        "default": False,
+        "mandatory": True,
+        "type": "bool"
+    },
+    {
+        "param_name": "wazuhindexer_cert",
+        "param_human_name": "Wazuh-Indexer Cert",
+        "param_description": "Path to the CA on the system used to check server certificate",
+        "default": "/path/to/wazuhindexer_ca",
+        "mandatory": False,
+        "type": "string"
+    },
     {
         "param_name": "wazuhindexer_manual_hook_enabled",
         "param_human_name": "Manual triggers on IOCs",
@@ -73,9 +144,9 @@ module_configuration = [
         "section": "Insights"
     },# TODO: careful here, remove backslashes from \{\{ results| tojson(indent=4) \}\}
     {
-        "param_name": "wazuhindexer_domain_report_template",
-        "param_human_name": "Domain report template",
-        "param_description": "Domain report template used to add a new custom attribute to the target IOC",
+        "param_name": "wazuhindexer_ioc_report_template",
+        "param_human_name": "Wazuh-Indexer Related IoCs report template",
+        "param_description": "Wazuh-Indexer Related IoCs report template used to add a new custom attribute to the target IOC",
         "default": "<div class=\"row\">\n    <div class=\"col-12\">\n        <div "
                    "class=\"accordion\">\n            <h3>wazuhindexer raw results</h3>\n\n           "
                    " <div class=\"card\">\n                <div class=\"card-header "
@@ -89,7 +160,7 @@ module_configuration = [
                    "class=\"span-mode\"></div>\n                </div>\n                <div "
                    "id=\"drop_raw_wazuhindexer\" class=\"collapse\" aria-labelledby=\"drop_r_wazuhindexer\" "
                    "style=\"\">\n                    <div class=\"card-body\">\n              "
-                   "          <div id='wazuhindexer_raw_ace'>\{\{ results| tojson(indent=4) \}\}</div>\n  "
+                   "          <div id='wazuhindexer_raw_ace'>{{ results| tojson(indent=4) }}</div>\n  "
                    "                  </div>\n                </div>\n            </div>\n    "
                    "    </div>\n    </div>\n</div> \n<script>\nvar wazuhindexer_in_raw = ace.edit("
                    "\"wazuhindexer_raw_ace\",\n{\n    autoScrollEditorIntoView: true,\n    minLines: "
