@@ -147,33 +147,7 @@ module_configuration = [
         "param_name": "wazuhindexer_ioc_report_template",
         "param_human_name": "Wazuh-Indexer Related IoCs report template",
         "param_description": "Wazuh-Indexer Related IoCs report template used to add a new custom attribute to the target IOC",
-        "default": "<div class=\"row\">\n    <div class=\"col-12\">\n        <div "
-                   "class=\"accordion\">\n            <h3>wazuhindexer raw results</h3>\n\n           "
-                   " <div class=\"card\">\n                <div class=\"card-header "
-                   "collapsed\" id=\"drop_r_wazuhindexer\" data-toggle=\"collapse\" "
-                   "data-target=\"#drop_raw_wazuhindexer\" aria-expanded=\"false\" "
-                   "aria-controls=\"drop_raw_wazuhindexer\" role=\"button\">\n                    <div "
-                   "class=\"span-icon\">\n                        <div "
-                   "class=\"flaticon-file\"></div>\n                    </div>\n              "
-                   "      <div class=\"span-title\">\n                        wazuhindexer raw "
-                   "results\n                    </div>\n                    <div "
-                   "class=\"span-mode\"></div>\n                </div>\n                <div "
-                   "id=\"drop_raw_wazuhindexer\" class=\"collapse\" aria-labelledby=\"drop_r_wazuhindexer\" "
-                   "style=\"\">\n                    <div class=\"card-body\">\n              "
-                   "          <div id='wazuhindexer_raw_ace'>{{ results| tojson(indent=4) }}</div>\n  "
-                   "                  </div>\n                </div>\n            </div>\n    "
-                   "    </div>\n    </div>\n</div> \n<script>\nvar wazuhindexer_in_raw = ace.edit("
-                   "\"wazuhindexer_raw_ace\",\n{\n    autoScrollEditorIntoView: true,\n    minLines: "
-                   "30,\n});\nwazuhindexer_in_raw.setReadOnly(true);\nwazuhindexer_in_raw.setTheme("
-                   "\"ace/theme/tomorrow\");\nwazuhindexer_in_raw.session.setMode("
-                   "\"ace/mode/json\");\nwazuhindexer_in_raw.renderer.setShowGutter("
-                   "true);\nwazuhindexer_in_raw.setOption(\"showLineNumbers\", "
-                   "true);\nwazuhindexer_in_raw.setOption(\"showPrintMargin\", "
-                   "false);\nwazuhindexer_in_raw.setOption(\"displayIndentGuides\", "
-                   "true);\nwazuhindexer_in_raw.setOption(\"maxLines\", "
-                   "\"Infinity\");\nwazuhindexer_in_raw.session.setUseWrapMode("
-                   "true);\nwazuhindexer_in_raw.setOption(\"indentedSoftWrap\", "
-                   "true);\nwazuhindexer_in_raw.renderer.setScrollMargin(8, 5);\n</script> ",
+        "default": "<div class=\"row\">\n    <div class=\"col-12\">\n        <div class=\"accordion\">\n            <h2>[SOCFortress Proffesional Services](https://www.socfortress.co/contact_form.html)</h2>\n            <h3>Wazuh-Indexer raw results</h3>\n\n            <div class=\"card\">\n                <div class=\"card-header collapsed\" id=\"drop_r_wazuhindexer\" data-toggle=\"collapse\" data-target=\"#drop_raw_wazuhindexer\" aria-expanded=\"false\" aria-controls=\"drop_raw_wazuhindexer\" role=\"button\">\n                    <div class=\"span-icon\">\n                        <div class=\"flaticon-file\"></div>\n                    </div>\n                    <div class=\"span-title\">\n                        Raw Results\n                    </div>\n                    <div class=\"span-mode\"></div>\n                </div>\n                <div id=\"drop_raw_wazuhindexer\" class=\"collapse\" aria-labelledby=\"drop_r_wazuhindexer\" style=\"\">\n                    <div class=\"card-body\">\n                        <div id='wazuhindexer_raw_ace'>{{ results| tojson(indent=4) }}</div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div> \n<script>\nvar wazuhindexer_in_raw = ace.edit(\"wazuhindexer_raw_ace\",\n{\n    autoScrollEditorIntoView: true,\n    minLines: 30,\n});\nwazuhindexer_in_raw.setReadOnly(true);\nwazuhindexer_in_raw.setTheme(\"ace/theme/tomorrow\");\nwazuhindexer_in_raw.session.setMode(\"ace/mode/json\");\nwazuhindexer_in_raw.renderer.setShowGutter(true);\nwazuhindexer_in_raw.setOption(\"showLineNumbers\", true);\nwazuhindexer_in_raw.setOption(\"showPrintMargin\", false);\nwazuhindexer_in_raw.setOption(\"displayIndentGuides\", true);\nwazuhindexer_in_raw.setOption(\"maxLines\", \"Infinity\");\nwazuhindexer_in_raw.session.setUseWrapMode(true);\nwazuhindexer_in_raw.setOption(\"indentedSoftWrap\", true);\nwazuhindexer_in_raw.renderer.setScrollMargin(8, 5);\n</script> ",
         "mandatory": False,
         "type": "textfield_html",
         "section": "Templates"
