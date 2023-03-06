@@ -86,7 +86,7 @@ class WazuhindexerHandler(object):
         # ex: return wazuhindexerApi(url, key)
         return "<TODO>"
 
-    def gen_domain_report_from_template(self, html_template, wazuhindexer_report, total_hits) -> InterfaceStatus:
+    def gen_report_from_template(self, html_template, wazuhindexer_report, total_hits) -> InterfaceStatus:
         """
         Generates an HTML report for Domain, displayed as an attribute in the IOC
 
@@ -113,7 +113,7 @@ class WazuhindexerHandler(object):
 
     def handle_domain(self, ioc):
         """
-        Handles an IOC of type domain and adds Wazuh-Indexer insights
+        Handles an IOC of type Domain and adds Wazuh-Indexer insights
         :param ioc: IOC instance
         :return: IIStatus
         """
@@ -294,7 +294,7 @@ class WazuhindexerHandler(object):
 
             report = hits
 
-            status = self.gen_domain_report_from_template(
+            status = self.gen_report_from_template(
                 self.mod_config.get("wazuhindexer_ioc_report_template"), report, total_hits
             )
 
@@ -323,7 +323,7 @@ class WazuhindexerHandler(object):
     
     def handle_ip(self, ioc):
         """
-        Handles an IOC of type domain and adds Elasticsearch insights
+        Handles an IOC of type IP and adds Wazuh-Indexer insights
         :param ioc: IOC instance
         :return: IIStatus
         """
@@ -337,7 +337,7 @@ class WazuhindexerHandler(object):
         cert = self.mod_config.get("wazuhindexer_cert")
         verify = self.mod_config.get("wazuhindexer_ssl")
 
-        print(f"Elasticsearch Endpoint: {endpoint}")
+        print(f"Wazuh-Indexer Endpoint: {endpoint}")
 
         try:
             if user:
@@ -522,8 +522,8 @@ class WazuhindexerHandler(object):
 
             report = hits
 
-            status = self.gen_domain_report_from_template(
-                self.mod_config.get("wazuhindexer_ioc_report_template"), report
+            status = self.gen_report_from_template(
+                self.mod_config.get("wazuhindexer_ioc_report_template"), report, total_hits
             )
 
             if not status.is_success():
@@ -551,7 +551,7 @@ class WazuhindexerHandler(object):
 
     def handle_filehash(self, ioc):
         """
-        Handles an IOC of type domain and adds VT insights
+        Handles an IOC of type sha256 and adds Wazuh-Indexer insights
         :param ioc: IOC instance
         :return: IIStatus
         """
@@ -565,7 +565,7 @@ class WazuhindexerHandler(object):
         cert = self.mod_config.get("wazuhindexer_cert")
         verify = self.mod_config.get("wazuhindexer_ssl")
 
-        print(f"Elasticsearch Endpoint: {endpoint}")
+        print(f"Wazuh-Indexer Endpoint: {endpoint}")
 
         try:
             if user:
@@ -750,8 +750,8 @@ class WazuhindexerHandler(object):
 
             report = hits
 
-            status = self.gen_domain_report_from_template(
-                self.mod_config.get("wazuhindexer_ioc_report_template"), report
+            status = self.gen_report_from_template(
+                self.mod_config.get("wazuhindexer_ioc_report_template"), report, total_hits
             )
 
             if not status.is_success():
@@ -779,7 +779,7 @@ class WazuhindexerHandler(object):
 
     def handle_filename(self, ioc):
         """
-        Handles an IOC of type domain and adds VT insights
+        Handles an IOC of type filename and adds Wazuh-Indexer insights
         :param ioc: IOC instance
         :return: IIStatus
         """
@@ -793,7 +793,7 @@ class WazuhindexerHandler(object):
         cert = self.mod_config.get("wazuhindexer_cert")
         verify = self.mod_config.get("wazuhindexer_ssl")
 
-        print(f"Elasticsearch Endpoint: {endpoint}")
+        print(f"Wazuh-Indexer Endpoint: {endpoint}")
 
         try:
             if user:
@@ -970,8 +970,8 @@ class WazuhindexerHandler(object):
 
             report = hits
 
-            status = self.gen_domain_report_from_template(
-                self.mod_config.get("wazuhindexer_ioc_report_template"), report
+            status = self.gen_report_from_template(
+                self.mod_config.get("wazuhindexer_ioc_report_template"), report, total_hits
             )
 
             if not status.is_success():
