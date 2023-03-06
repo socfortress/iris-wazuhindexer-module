@@ -86,7 +86,7 @@ class WazuhindexerHandler(object):
         # ex: return wazuhindexerApi(url, key)
         return "<TODO>"
 
-    def gen_domain_report_from_template(self, html_template, wazuhindexer_report) -> InterfaceStatus:
+    def gen_domain_report_from_template(self, html_template, wazuhindexer_report, total_hits) -> InterfaceStatus:
         """
         Generates an HTML report for Domain, displayed as an attribute in the IOC
 
@@ -96,7 +96,7 @@ class WazuhindexerHandler(object):
         """
         template = Template(html_template)
         context = wazuhindexer_report
-        pre_render = dict({"results": []})
+        pre_render = dict({"results": [], "total_hits": total_hits})
 
         for wazuhindexer_result in context:
             pre_render["results"].append(wazuhindexer_result)
@@ -295,7 +295,7 @@ class WazuhindexerHandler(object):
             report = hits
 
             status = self.gen_domain_report_from_template(
-                self.mod_config.get("wazuhindexer_ioc_report_template"), report
+                self.mod_config.get("wazuhindexer_ioc_report_template"), report, total_hits
             )
 
             if not status.is_success():
