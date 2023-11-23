@@ -122,7 +122,7 @@ class IrisWazuhindexerInterface(IrisModuleInterface):
 
         in_status = InterfaceStatus.IIStatus(code=InterfaceStatus.I2CodeNoError)
 
-        self.log.info(f'Handling {data}')
+        self.log.info(f'Handling {data.__dict__}')
 
         for element in data:
             # Check that the IOC we receive is of type the module can handle and dispatch
