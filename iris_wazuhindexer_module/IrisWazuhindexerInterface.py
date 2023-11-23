@@ -122,7 +122,9 @@ class IrisWazuhindexerInterface(IrisModuleInterface):
 
         in_status = InterfaceStatus.IIStatus(code=InterfaceStatus.I2CodeNoError)
 
-        self.log.info(f'Handling {data.__dict__}')
+        # data is a list so I want to print the full list in text format
+        self.log.info(f'Received {len(data)} IOCs')
+        self.log.debug(f'Received IOCs: {data}')
 
         for element in data:
             # Check that the IOC we receive is of type the module can handle and dispatch
