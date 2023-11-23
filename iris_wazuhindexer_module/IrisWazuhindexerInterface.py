@@ -125,7 +125,10 @@ class IrisWazuhindexerInterface(IrisModuleInterface):
         for element in data:
             # Check that the IOC we receive is of type the module can handle and dispatch
             if 'domain' in element.ioc_type.type_name:
-                self.log.info(f'Handling domain {element}')
+                # json dump the IOC object to get a dict
+                json_ioc = element.to_json()
+
+                self.log.info(f'Handling domain {json_ioc}')
                 status = wazuhindexer_handler.handle_domain(ioc=element)
                 in_status = InterfaceStatus.merge_status(in_status, status)
             # Hanlde IoC of type IP
