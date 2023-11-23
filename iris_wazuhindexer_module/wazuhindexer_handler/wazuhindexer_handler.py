@@ -150,6 +150,11 @@ class WazuhindexerHandler(object):
             info["querystring"] = ""
             # populate logs
             self.log.info(f'Searching Wazuh-Indexer for: {ioc} contained within the field name {fields}')
+            # dump all the ioc objects into a list
+            objects = []
+            objects.append(ioc)
+            self.log.info(f'IOC Object: {objects}')
+
             # Call to Elasticsearch
             res = es.search(
                 size=size,
