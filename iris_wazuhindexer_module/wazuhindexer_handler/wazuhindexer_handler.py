@@ -149,7 +149,7 @@ class WazuhindexerHandler(object):
             # query string to show kql search
             info["querystring"] = ""
             # populate logs
-            self.log.info(f'Searching Wazuh-Indexer for: {ioc.ioc_value} contained within the field name {fields}')
+            self.log.info(f'Searching Wazuh-Indexer for: {ioc} contained within the field name {fields}')
             # Call to Elasticsearch
             res = es.search(
                 size=size,
@@ -359,7 +359,7 @@ class WazuhindexerHandler(object):
             # query string to show kql search
             info["querystring"] = ""
             # populate logs
-            self.log.info(f'Searching Wazuh-Indexer for: {ioc.ioc_value} contained within the field name {fields}')
+            self.log.info(f'Searching Wazuh-Indexer for: {ioc} contained within the field name {fields}')
             # Call to Elasticsearch
             res = es.search(
                 size=size,
