@@ -128,6 +128,10 @@ class IrisWazuhindexerInterface(IrisModuleInterface):
         self.log.info(f'Received {len(data)} IOCs')
         self.log.info(f'Received IOCs: {data}')
 
+        case = CaseDetailsSchema(many=True).dump(data)
+        self.log.info(f'Received {len(case)} Cases')
+        self.log.info(f'Received Cases: {case}')
+
         for element in data:
             # Check that the IOC we receive is of type the module can handle and dispatch
             if 'domain' in element.ioc_type.type_name:
