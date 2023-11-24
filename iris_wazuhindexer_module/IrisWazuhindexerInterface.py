@@ -92,6 +92,8 @@ class IrisWazuhindexerInterface(IrisModuleInterface):
 
         self.log.info(f'Received {hook_name}')
         if hook_name in ['on_postload_ioc_create', 'on_postload_ioc_update', 'on_manual_trigger_ioc']:
+            case = CaseDetailsSchema().dump(data)
+            self.log.info(f'Case: {case}')
             status = self._handle_ioc(data=data)
 
         else:
