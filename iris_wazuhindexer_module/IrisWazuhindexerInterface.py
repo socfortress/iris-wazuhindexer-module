@@ -13,6 +13,7 @@ from pathlib import Path
 
 import iris_interface.IrisInterfaceStatus as InterfaceStatus
 from iris_interface.IrisModuleInterface import IrisPipelineTypes, IrisModuleInterface, IrisModuleTypes
+from app.schema.marshables import AlertSchema, CaseDetailsSchema, CaseAssetsSchema, CaseNoteSchema, IocSchema, EventSchema, CaseEvidenceSchema, CaseTaskSchema
 
 import iris_wazuhindexer_module.IrisWazuhindexerConfig as interface_conf
 from iris_wazuhindexer_module.wazuhindexer_handler.wazuhindexer_handler import WazuhindexerHandler
@@ -123,6 +124,7 @@ class IrisWazuhindexerInterface(IrisModuleInterface):
         in_status = InterfaceStatus.IIStatus(code=InterfaceStatus.I2CodeNoError)
 
         # data is a list so I want to print the full list in text format
+        data = IocSchema(many=True).dump(data)
         self.log.info(f'Received {len(data)} IOCs')
         self.log.debug(f'Received IOCs: {data}')
 
