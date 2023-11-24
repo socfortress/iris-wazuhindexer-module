@@ -126,7 +126,7 @@ class IrisWazuhindexerInterface(IrisModuleInterface):
         # data is a list so I want to print the full list in text format
         data = IocSchema(many=True).dump(data)
         self.log.info(f'Received {len(data)} IOCs')
-        self.log.debug(f'Received IOCs: {data}')
+        self.log.info(f'Received IOCs: {data}')
 
         for element in data:
             # Check that the IOC we receive is of type the module can handle and dispatch
