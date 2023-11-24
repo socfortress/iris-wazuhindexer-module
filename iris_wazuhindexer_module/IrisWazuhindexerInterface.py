@@ -129,7 +129,7 @@ class IrisWazuhindexerInterface(IrisModuleInterface):
         self.log.info(f'Received IOCs: {data}')
 
         # Get the case ID
-        case_id = data[0].case_id
+        case_id = data[0].id
         self.log.info(f'Case ID: {case_id}')
 
         server_url = jconfig.get('instance_url')
